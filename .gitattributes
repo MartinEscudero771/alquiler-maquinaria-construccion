@@ -1,0 +1,10 @@
+# Excluir del conteo de lenguajes de GitHub las herramientas de arranque/reparo:
+# son scripts de apoyo del sistema (no lenguajes del proyecto en si).
+*.ps1   linguist-detectable=false
+*.psm1  linguist-detectable=false
+*.psd1  linguist-detectable=false
+*.bat   linguist-detectable=false
+*.cmd   linguist-detectable=false
+
+# Contar el esquema SQL del proyecto en la barra de lenguajes.
+*.sql   linguist-detectable=true
