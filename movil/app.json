@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Alquiler Maquinaria",
+    "slug": "alquiler-maquinaria",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "platforms": ["android", "web"],
+    "userInterfaceStyle": "automatic",
+    "icon": "./assets/icono.png",
+    "splash": {
+      "backgroundColor": "#14161A",
+      "image": "./assets/logo.png"
+    },
+    "android": {
+      "package": "co.edu.ucc.alquilermaquinaria"
+    }
+  }
+}
