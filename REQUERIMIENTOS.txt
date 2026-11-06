@@ -1,0 +1,111 @@
+========================================================================
+REQUERIMIENTOS Y LIBRERIAS
+Control de Alquiler de Maquinaria de Construccion (V2)
+Generado: 06/11/2026
+========================================================================
+
+1) REQUISITOS DEL SISTEMA
+------------------------------------------------------------------------
+- Sistema operativo : Windows 10/11 x64 (probado en Windows 11 IoT
+                     Enterprise LTSC, build 26100)
+- Consola           : PowerShell 7.x (probada 7.6.9). Usada por
+                     scripts/iniciar.ps1, scripts/detener.ps1 y
+                     scripts/generar-integridad.ps1
+- XAMPP             : panel con el servicio MariaDB activo
+                       * PHP 8.2.33 (CLI)        -> API PHP (puerto 8000)
+                       * MariaDB 10.4.32         -> base de datos (puerto 3306)
+                       * binario: C:\xampp\mysql\bin\mysql.exe
+- Node.js           : v24.19.0  (npm 11.17.0)
+                       Gateway (3000), API Node (3002), Frontend (8443)
+- Python            : 3.13.15  (API Python FastAPI en puerto 3003)
+- Navegador         : Chrome/Edge/Firefox actualizados (HTTPS local,
+                     JavaScript, canvas para graficas Chart.js)
+
+2) PUERTOS
+------------------------------------------------------------------------
+  3000  API Gateway (HTTPS con certificado pfx)    node   api-gateway
+  3002  API de alquileres e inspecciones (HTTP)    node   apis\apinode
+  3003  API de maquinarias/unidades/reportes       python apis\apipython
+  8000  API de captcha y sesion (HTTP)             php    apis\apiphp
+  8443  Frontend (HTTPS con certificado pfx)       node   frontend-server
+  3306  MariaDB InnoDB utf8mb4_unicode_ci          XAMPP  basededatos
+
+  Nota: la instancia MariaDB del 3306 es COMPARTIDA con otro proyecto
+  (pos_app): scripts/detener.ps1 nunca la apaga ni rota su clave root.
+
+3) LIBRERIAS POR COMPONENTE (versiones reales)
+------------------------------------------------------------------------
+- api-gateway  (api-gateway\package.json)
+    express           ^4.19.2
+    cors              ^2.8.5
+    dotenv            ^16.4.5
+    jsonwebtoken      ^9.0.2
+
+- API Node de alquileres  (apis\apinode\package.json)
+    express           ^4.19.2
+    mysql2            ^3.9.7
+    dotenv            ^16.4.5
+
+- API Python  (apis\apipython\requirements.txt, versiones exactas)
+    fastapi                  == 0.115.6
+    uvicorn                  == 0.34.0
+    mysql-connector-python   == 9.1.0
+    pydantic                 == 2.10.4
+    python-dotenv            == 1.0.1
+
+- API PHP  (apis\apiphp)
+    PHP 8.2 nativo (sin Composer). Sirve el captcha y valida la sesion
+    con variables propias de apis\apiphp\.env (DB_* y CLAVE_INTERNA_PHP).
+
+- Frontend web  (frontend\vendor, librerias locales + SRI sha384)
+    Bootstrap CSS/JS  5.3.3
+    Bootstrap Icons   1.13.2  (+ fuentes woff/woff2)
+    Chart.js          4.4.7   (UMD, con parche local: fallback de
+                       interpolador numerico en animaciones con tipo
+                       desconocido; evita "this._fn is not a function")
+    FullCalendar      6.1.15  (bundle global + localizacion es)
+
+- Frontend server  (frontend-server)
+    Un solo server.js con modulos nativos de Node (https, fs, crypto):
+    SIN dependencias externas. Sirve con SRI/verificacion de integridad
+    (integridad.json: huellas SHA-256 de 154 archivos; regenerar con
+    scripts\generar-integridad.ps1 tras cambios en frontend\).
+
+- Demo movil  (movil, CODIGO FUENTE sin compilar - Anexo D)
+    React Native + Expo; NO incluye node_modules ni bundle dist.
+    Si se quiere ejecutar la demo:
+        cd movil
+        npm install
+        npx expo start        (QR con Expo Go / emulador / web)
+    Dependencias declaradas en movil\package.json:
+        expo ~51.0.28, react 18.2.0, react-native 0.74.5,
+        react-native-safe-area-context 4.10.5, react-native-web ~0.19.10,
+        expo-constants ~16.0.2, expo-linking ~6.3.1,
+        expo-status-bar ~1.12.1, @expo/metro-runtime ~3.2.3
+    URL del gateway definida en App.js (URL_GATEWAY).
+
+- Base de datos  (basededatos)
+    MariaDB 10.4.32 (compatible MySQL), motor InnoDB,
+    cotejamiento utf8mb4_unicode_ci.
+    Credenciales demo: usuario/clave admin admin (basededatos\.admin-inicial.env,
+    se siembran al primer inicio). Clave root: ver .env de cada API.
+
+4) COMO REINSTALAR DEPENDENCIAS
+------------------------------------------------------------------------
+    cd api-gateway   && npm install
+    cd apis\apinode  && npm install
+    pip install -r apis\apipython\requirements.txt
+    (el frontend no requiere instalacion: usa vendor local)
+    (la demo movil es opcional: npm install && npx expo start)
+
+5) ARRANQUE Y APAGADO
+------------------------------------------------------------------------
+    iniciar.bat
+        [1 de 2] scripts\detener.ps1  -> libera puertos del proyecto
+                                         (3000/3002/3003/8000/8443/8082)
+                                         y DEJA VIVO el MariaDB del 3306
+        [2 de 2] scripts\iniciar.ps1  -> siembra la BD si hace falta,
+                                         levanta las 6 piezas y hace
+                                         checks de salud
+    Detener a mano: scripts\detener.ps1  (o cerrar iniciar.bat)
+========================================================================
