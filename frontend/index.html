@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Alquiler de maquinaria pesada y liviana para construcción: catálogo, tarifas por día y disponibilidad.">
+<meta name="theme-color" content="#14161A">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F7F3E8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161A" media="(prefers-color-scheme: dark)">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://localhost:3000 https://127.0.0.1:3000; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
+<meta property="og:title" content="Control de Alquiler de Maquinaria">
+<meta property="og:description" content="Avance su obra sin comprar maquinaria: alquiler por días con tarifa clara y equipos listos para trabajar.">
+<meta property="og:image" content="img/logo.png">
+<meta property="og:image:alt" content="Logo de alquiler de maquinaria de construcción">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary">
+<title>Control de Alquiler de Maquinaria</title>
+<link rel="canonical" href="https://localhost:8443/">
+<link rel="icon" href="img/icono.ico" type="image/x-icon">
+<link href="vendor/bootstrap.min.css" rel="stylesheet" integrity="sha384-wtrIRqztIYGvkbJp4m6Vi2ETIkyUhJ/Ik2fZyGQZwVxCUYzb3nUwIZnNQjzGbTLm" crossorigin="anonymous">
+<link href="vendor/bootstrap-icons/bootstrap-icons.min.css" rel="stylesheet" integrity="sha384-nWN3KqaaVcbEsCjLSV+2jMjh62Iny/+mN3srM8TZeM8N6aj7eDl5wwYggjAJ4/sJ" crossorigin="anonymous">
+<link href="css/estilos.css?v=20261105" rel="stylesheet">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<div id="vista-publica">
+  <header class="encabezado-publico">
+    <nav class="navbar navbar-expand-lg navbar-light container">
+      <span class="navbar-brand marca">
+        <img src="img/logo.png" alt="Logo de alquiler de maquinaria" class="logo">
+        <span class="nombre">Alquiler de Maquinaria</span>
+      </span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPublico" aria-label="Abrir menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuPublico">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+          <li class="nav-item"><a class="nav-link" href="#seccion-catalogo"><i class="bi bi-grid-3x3-gap"></i> Catálogo</a></li>
+          <li class="nav-item"><a class="nav-link" href="#seccion-beneficios"><i class="bi bi-award"></i> Beneficios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#seccion-solicitar"><i class="bi bi-clipboard-check"></i> Solicitar</a></li>
+          <li class="nav-item"><a class="nav-link" href="#seccion-contacto"><i class="bi bi-telephone"></i> Contacto</a></li>
+          <li class="nav-item"><button id="botonAbrirLogin" type="button" class="btn botonoscuro btn-sm"><i class="bi bi-box-arrow-in-right"></i> Iniciar sesión</button></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+  <section class="hero">
+    <div class="container py-5">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6 text-center">
+          <p class="sub mb-1 animar-entrada retraso-0"><i class="bi bi-tools"></i> Maquinaria pesada y liviana</p>
+          <h1 class="display-5 animar-entrada retraso-1">Alquile la máquina que su obra necesita</h1>
+          <p class="lead animar-entrada mx-auto retraso-2">Avance su obra sin comprar maquinaria: alquiler por días con tarifa clara y equipos listos para trabajar.</p>
+          <div class="d-flex gap-2 flex-wrap justify-content-center animar-entrada retraso-3">
+            <a href="#seccion-catalogo" class="btn botonamarillo"><i class="bi bi-grid-3x3-gap"></i> Ver catálogo</a>
+            <a href="#seccion-solicitar" class="btn botonoscuro"><i class="bi bi-clipboard-check"></i> Solicitar alquiler</a>
+          </div>
+        </div>
+        <div class="col-lg-6 animar-entrada retraso-4">
+          <img src="img/maquinaria/excavadora/foto04.jpg" alt="Excavadora hidráulica disponible para alquiler" class="img-fluid" loading="eager" fetchpriority="high" width="800" height="533">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="banda-datos" aria-label="Cifras del catálogo">
+    <div class="container">
+      <div class="row g-3">
+        <div class="col-4 dato"><div class="cifra" id="statMaquinas">0</div><div class="etiqueta">Máquinas en catálogo</div></div>
+        <div class="col-4 dato"><div class="cifra" id="statUnidades">0</div><div class="etiqueta">Unidades totales</div></div>
+        <div class="col-4 dato"><div class="cifra" id="statDisponibles">0</div><div class="etiqueta">Disponibles hoy</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="seccion-beneficios" class="seccion seccion-blanca">
+    <div class="container">
+      <h2 class="tituloseccion mb-1"><i class="bi bi-award"></i> Por qué alquilarnos</h2>
+      <p class="texto-secundario mb-4">Razones para trabajar con nosotros.</p>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-5 justify-content-center g-3">
+        <div class="col"><div class="beneficio"><img src="img/captcha/icono-excavadora.png" alt="Icono de maquinaria disponible" loading="lazy"><h3 class="h5 mt-2">Maquinaria disponible</h3><p class="texto-secundario mb-0">Pesada y liviana con unidades listas.</p></div></div>
+        <div class="col"><div class="beneficio"><img src="img/captcha/icono-cargador.png" alt="Icono de tarifas claras" loading="lazy"><h3 class="h5 mt-2">Tarifas claras</h3><p class="texto-secundario mb-0">Precio por día visible en cada máquina.</p></div></div>
+        <div class="col"><div class="beneficio"><img src="img/captcha/icono-mezcladora.png" alt="Icono de alquiler por días" loading="lazy"><h3 class="h5 mt-2">Alquiler por días</h3><p class="texto-secundario mb-0">Contratos por el tiempo que necesite.</p></div></div>
+        <div class="col"><div class="beneficio"><img src="img/captcha/icono-aplanadora.png" alt="Icono de atención local" loading="lazy"><h3 class="h5 mt-2">Atención local</h3><p class="texto-secundario mb-0">Gestión directa de clientes y contratos.</p></div></div>
+        <div class="col"><div class="beneficio"><img src="img/captcha/icono-compactadora.png" alt="Icono de maquinaria pesada y liviana" loading="lazy"><h3 class="h5 mt-2">Pesada y liviana</h3><p class="texto-secundario mb-0">Dos categorías para cada tipo de obra.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="seccion-catalogo" class="seccion seccion-gris">
+    <div class="container">
+      <h2 class="tituloseccion mb-1"><i class="bi bi-collection"></i> Catálogo de maquinaria</h2>
+      <p class="texto-secundario">Explore el catálogo y elija la máquina ideal para su obra.</p>
+      <div class="card p-3 mb-3">
+        <div class="row g-2 align-items-end">
+          <div class="col-md-3">
+            <span class="form-label d-block" id="filtroCategoria">Categoría</span>
+            <div class="btn-group w-100" role="group" aria-labelledby="filtroCategoria">
+              <button type="button" class="btn botonoscuro" data-filtro="todas" aria-pressed="true">Todas</button>
+              <button type="button" class="btn botonoscuro" data-filtro="pesada" aria-pressed="false">Pesadas</button>
+              <button type="button" class="btn botonoscuro" data-filtro="liviana" aria-pressed="false">Livianas</button>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label" for="filtroDisponibilidad">Disponibilidad</label>
+            <select id="filtroDisponibilidad" class="form-select">
+              <option value="todas">Todas</option>
+              <option value="disponibles">Solo disponibles</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label class="form-label" for="filtroPrecioMin">Tarifa mín.</label>
+            <input id="filtroPrecioMin" type="number" inputmode="numeric" min="0" class="form-control" placeholder="0">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label" for="filtroPrecioMax">Tarifa máx.</label>
+            <input id="filtroPrecioMax" type="number" inputmode="numeric" min="0" class="form-control" placeholder="Sin tope">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label" for="ordenCatalogo">Ordenar</label>
+            <select id="ordenCatalogo" class="form-select">
+              <option value="relevancia">Relevancia</option>
+              <option value="nombre">Nombre A–Z</option>
+              <option value="precio-asc">Precio: menor a mayor</option>
+              <option value="precio-desc">Precio: mayor a menor</option>
+              <option value="disponibles">Más disponibles</option>
+            </select>
+          </div>
+        </div>
+        <div class="row g-2 mt-1">
+          <div class="col-md-9"><input id="busquedaPublica" type="search" class="form-control" placeholder="Buscar por nombre..." aria-label="Buscar maquinaria por nombre"></div>
+          <div class="col-md-3"><button id="botonLimpiarFiltros" type="button" class="btn botonoscuro w-100"><i class="bi bi-x-circle"></i> Limpiar</button></div>
+        </div>
+      </div>
+      <p class="texto-secundario" id="conteoCatalogo" aria-live="polite"></p>
+      <div id="mensajeCatalogo"></div>
+      <div id="catalogoPublico" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3"></div>
+      <nav class="mt-3" aria-label="Paginación del catálogo"><div id="paginacionPublico" class="d-flex gap-2 flex-wrap"></div></nav>
+    </div>
+  </section>
+
+  <section id="seccion-solicitar" class="seccion seccion-blanca">
+    <div class="container">
+      <h2 class="tituloseccion mb-1"><i class="bi bi-clipboard-check"></i> Solicite su alquiler</h2>
+      <p class="texto-secundario">Cuéntenos qué necesita y le contactaremos para confirmar su alquiler.</p>
+      <div class="card p-3">
+        <div class="row g-2">
+          <div class="col-md-6"><label class="form-label" for="solNombre">Nombre completo *</label><input id="solNombre" class="form-control" autocomplete="name" maxlength="100" placeholder="Ej.: María Pérez"></div>
+          <div class="col-md-6"><label class="form-label" for="solDocumento">Documento *</label><input id="solDocumento" inputmode="numeric" class="form-control" maxlength="20" placeholder="Ej.: 1234567890"></div>
+          <div class="col-md-6"><label class="form-label" for="solTelefono">Teléfono</label><input id="solTelefono" type="tel" inputmode="tel" autocomplete="tel" class="form-control" maxlength="20" placeholder="Ej.: 6015550101"><div class="invalid-feedback">Indique un teléfono o un correo válido.</div></div>
+          <div class="col-md-6"><label class="form-label" for="solCorreo">Correo</label><input id="solCorreo" type="email" inputmode="email" autocomplete="email" class="form-control" maxlength="100" placeholder="Ej.: maria@correo.co"><div class="invalid-feedback">El correo no es válido.</div></div>
+          <div class="col-md-12"><label class="form-label" for="solMaquinaria">Maquinaria *</label><select id="solMaquinaria" class="form-select"></select><div class="invalid-feedback">Seleccione una maquinaria.</div></div>
+          <div class="col-md-6"><label class="form-label" for="solDesde">Fecha inicial *</label><input id="solDesde" type="date" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label" for="solHasta">Fecha final *</label><input id="solHasta" type="date" class="form-control"></div>
+          <div class="col-12"><label class="form-label" for="solObs">Observaciones</label><input id="solObs" class="form-control" maxlength="250" placeholder="Detalles de la obra o del uso"></div>
+          <div class="campo-trampa" aria-hidden="true"><label class="form-label" for="solWeb">No llenar este campo</label><input id="solWeb" class="form-control" tabindex="-1" autocomplete="off"></div>
+          <div class="col-12"><div class="costo-estimado" id="costoEstimado" aria-live="polite">Seleccione la máquina y las fechas para ver el costo estimado.</div></div>
+          <div class="col-12"><button id="botonEnviarSolicitud" type="button" class="btn botonamarillo"><i class="bi bi-send"></i> Enviar solicitud</button></div>
+        </div>
+        <div id="mensajeSolicitud"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="seccion-contacto" class="llamado">
+    <div class="container text-center">
+      <h2>¿Hablamos de su obra?</h2>
+      <p>Cuéntenos qué necesita: le ayudamos a elegir la máquina y le confirmamos la disponibilidad.</p>
+      <div class="row row-cols-1 row-cols-md-3 justify-content-center g-3 mt-1 mb-3">
+        <div class="col"><div><i class="bi bi-telephone"></i> Teléfono<br><strong>+57 601 555 0123</strong></div></div>
+        <div class="col"><div><i class="bi bi-geo-alt"></i> Dirección<br><strong>Autopista Norte #45-03, Bogotá D.C.</strong></div></div>
+        <div class="col"><div><i class="bi bi-clock"></i> Horario<br><strong>Lunes a sábado, 7:00 a.m. – 6:00 p.m.</strong></div></div>
+      </div>
+      <button type="button" class="btn botonoscuro" data-bs-toggle="modal" data-bs-target="#modalLogin"><i class="bi bi-box-arrow-in-right"></i> Iniciar sesión</button>
+    </div>
+  </section>
+
+  </main>
+
+  <div class="cinta-obra" aria-hidden="true"></div>
+  <footer class="pie">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <h3 class="titulo-pie h5"><i class="bi bi-tools"></i> Alquiler de Maquinaria</h3>
+          <p class="mb-0">Maquinaria pesada y liviana para construcción, con tarifas claras por día.</p>
+        </div>
+        <div class="col">
+          <h3 class="titulo-pie h5">Enlaces</h3>
+          <ul class="list-unstyled mb-0">
+            <li><a href="#seccion-catalogo">Catálogo</a></li>
+            <li><a href="#seccion-beneficios">Beneficios</a></li>
+            <li><a href="#seccion-solicitar">Solicitar</a></li>
+            <li><a href="#seccion-contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3 class="titulo-pie h5">Contacto</h3>
+          <p class="mb-1"><i class="bi bi-telephone"></i> +57 601 555 0123</p>
+          <p class="mb-1"><i class="bi bi-envelope"></i> contacto@alquilermaquinaria.co</p>
+          <p class="mb-0"><i class="bi bi-geo-alt"></i> Autopista Norte #45-03, Bogotá D.C.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div id="vista-privada" class="d-none">
+  <nav class="navbar navbar-expand-lg navbar-light barra-superior">
+    <div class="container-fluid">
+      <span class="navbar-brand marca">
+        <img src="img/logo.png" alt="Logo de alquiler de maquinaria" class="logo">
+        <span class="nombre">Panel de gestión</span>
+      </span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrivado" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuPrivado">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+          <li class="nav-item dropdown" id="itemNotificaciones">
+            <button id="botonCampana" type="button" class="btn botonoscuro btn-sm position-relative" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-haspopup="true" aria-label="Notificaciones del equipo">
+              <i class="bi bi-bell"></i>
+              <span id="contadorNotificaciones" class="cuenta-notificaciones d-none" aria-hidden="true">0</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end panel-notificaciones p-0" aria-labelledby="botonCampana">
+              <div class="d-flex align-items-center px-3 py-2 cabecera-campana">
+                <span class="fw-bold"><i class="bi bi-bell"></i> Notificaciones</span>
+                <button id="botonLeerTodas" type="button" class="btn btn-link btn-sm ms-auto"><i class="bi bi-check2-all"></i> Marcar todas</button>
+              </div>
+              <div id="listaNotificaciones" class="lista-notificaciones" aria-live="polite"></div>
+            </div>
+          </li>
+          <li class="nav-item"><span class="nav-link" id="usuarioActual"><i class="bi bi-person-circle"></i> -</span></li>
+          <li class="nav-item"><button id="botonSalir" type="button" class="btn botonoscuro btn-sm"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="barraLateralNav" class="col-12 col-md-3 col-lg-2 barraLateral p-3" tabindex="-1" aria-label="Módulos del sistema">
+        <div id="menuLateral" class="d-grid gap-1">
+          <button type="button" class="btn botonmenu" data-modulo="inicio"><i class="bi bi-grid-1x2"></i> Inicio</button>
+          <button type="button" class="btn botonmenu" data-modulo="clientes"><i class="bi bi-people"></i> Clientes</button>
+          <button type="button" class="btn botonmenu" data-modulo="catalogo"><i class="bi bi-collection"></i> Catálogo</button>
+          <button type="button" class="btn botonmenu" data-modulo="solicitudes" data-rol="admin operador"><i class="bi bi-inbox"></i> Solicitudes</button>
+          <button type="button" class="btn botonmenu" data-modulo="maquinas"><i class="bi bi-wrench"></i> Administrar</button>
+          <button type="button" class="btn botonmenu" data-modulo="unidades"><i class="bi bi-boxes"></i> Unidades</button>
+          <button type="button" class="btn botonmenu" data-modulo="alquileres"><i class="bi bi-calendar-check"></i> Alquileres</button>
+          <button type="button" class="btn botonmenu" data-modulo="calendario"><i class="bi bi-calendar3"></i> Calendario</button>
+          <button type="button" class="btn botonmenu" data-modulo="devoluciones"><i class="bi bi-arrow-return-left"></i> Devoluciones</button>
+          <button type="button" class="btn botonmenu" data-modulo="reportes"><i class="bi bi-bar-chart"></i> Reportes</button>
+          <button type="button" class="btn botonmenu" data-modulo="usuarios" data-rol="admin"><i class="bi bi-shield-lock"></i> Usuarios</button>
+          <button type="button" class="btn botonmenu" data-modulo="clave"><i class="bi bi-key"></i> Cambiar contraseña</button>
+        </div>
+      </nav>
+      <main class="col-12 col-md-9 col-lg-10 p-3">
+        <section id="modulo-inicio" class="modulo">
+          <h2 class="tituloseccion"><i class="bi bi-grid-1x2"></i> Resumen</h2>
+          <div class="row g-3 mt-1">
+            <div class="col-md-6 col-lg-3"><div class="tarjetaresumen"><div class="texto-secundario"><i class="bi bi-collection"></i> Maquinarias</div><div class="numero" id="resumenMaquinas">0</div></div></div>
+            <div class="col-md-6 col-lg-3"><div class="tarjetaresumen"><div class="texto-secundario"><i class="bi bi-boxes"></i> Unidades</div><div class="numero" id="resumenUnidades">0</div></div></div>
+            <div class="col-md-6 col-lg-3"><div class="tarjetaresumen"><div class="texto-secundario"><i class="bi bi-check-circle"></i> Disponibles</div><div class="numero" id="resumenDisponibles">0</div><div class="proporcion" aria-hidden="true"><span id="barraDisponibles"></span></div></div></div>
+            <div class="col-md-6 col-lg-3"><div class="tarjetaresumen"><div class="texto-secundario"><i class="bi bi-calendar-check"></i> Alquileres activos</div><div class="numero" id="resumenActivos">0</div></div></div>
+          </div>
+          <p class="texto-secundario mb-0 mt-3" id="estadoGraficas"><i class="bi bi-hourglass-split"></i> Cargando gráficas con datos vivos de la base…</p>
+          <div class="row g-3 mt-1">
+            <div class="col-lg-8"><div class="tarjetaresumen h-100 p-3">
+              <h3 class="h6 mb-2"><i class="bi bi-graph-up"></i> Ingresos facturados por fecha</h3>
+              <div class="marco-grafica"><canvas id="graficaIngresos" role="img" aria-label="Gráfica de ingresos facturados por fecha de alquiler"></canvas></div>
+            </div></div>
+            <div class="col-lg-4"><div class="tarjetaresumen h-100 p-3">
+              <h3 class="h6 mb-2"><i class="bi bi-pie-chart"></i> Estado de los contratos</h3>
+              <div class="marco-grafica"><canvas id="graficaEstados" role="img" aria-label="Gráfica de contratos activos, morosos y devueltos"></canvas></div>
+            </div></div>
+            <div class="col-md-6 col-lg-4"><div class="tarjetaresumen h-100 p-3">
+              <h3 class="h6 mb-2"><i class="bi bi-boxes"></i> Disponibilidad por familia</h3>
+              <div class="marco-grafica"><canvas id="graficaDisponibilidad" role="img" aria-label="Gráfica de unidades disponibles y ocupadas por familia de maquinaria"></canvas></div>
+            </div></div>
+            <div class="col-md-6 col-lg-8"><div class="tarjetaresumen h-100 p-3">
+              <h3 class="h6 mb-2"><i class="bi bi-bar-chart-line"></i> Máquinas más alquiladas</h3>
+              <div class="marco-grafica"><canvas id="graficaMaquinas" role="img" aria-label="Gráfica de contratos por maquinaria"></canvas></div>
+            </div></div>
+          </div>
+        </section>
+
+        <section id="modulo-clientes" class="modulo d-none">
+          <h2 class="tituloseccion"><i class="bi bi-people"></i> Clientes</h2>
+          <div class="card p-3 mb-3" data-rol="admin operador">
+            <h3 class="h5">Nuevo cliente</h3>
+            <div class="row g-2">
+              <div class="col-md-6"><label class="form-label" for="cliNombre">Nombre *</label><input id="cliNombre" class="form-control" autocomplete="name" placeholder="Nombre *" maxlength="100"></div>
+              <div class="col-md-6"><label class="form-label" for="cliDocumento">Documento *</label><input id="cliDocumento" inputmode="numeric" class="form-control" placeholder="Documento *" maxlength="20"></div>
+              <div class="col-md-6"><label class="form-label" for="cliTelefono">Teléfono</label><input id="cliTelefono" type="tel" inputmode="tel" autocomplete="tel" class="form-control" placeholder="Teléfono" maxlength="20"></div>
+              <div class="col-md-6"><label class="form-label" for="cliCorreo">Correo</label><input id="cliCorreo" type="email" inputmode="email" autocomplete="email" class="form-control" placeholder="Correo" maxlength="100"></div>
+              <div class="col-12"><label class="form-label" for="cliDireccion">Dirección</label><input id="cliDireccion" class="form-control" placeholder="Dirección" maxlength="150"></div>
+              <div class="col-12"><button id="botonGuardarCliente" type="button" class="btn botonamarillo"><i class="bi bi-plus-lg"></i> Guardar cliente</button></div>
+            </div>
+            <div id="mensajeClientes"></div>
+          </div>
+          <div class="card p-3">
+            <div class="row g-2 mb-2">
+              <div class="col-md-8"><input id="cliBusqueda" type="search" class="form-control" placeholder="Buscar cliente..." aria-label="Buscar cliente"></div>
+              <div class="col-md-4"><button id="botonBuscarClientes" type="button" class="btn botonoscuro w-100"><i class="bi bi-search"></i> Buscar</button></div>
+            </div>
+            <div class="table-responsive"><table class="table table-striped">
+              <thead><tr><th>Nombre</th><th>Documento</th><th>Teléfono</th><th>Correo</th></tr></thead>
+              <tbody id="tablaClientes"></tbody>
+            </table></div>
+          </div>
+        </section>
+
+        <section id="modulo-catalogo" class="modulo d-none">
+          <h2 class="tituloseccion"><i class="bi bi-collection"></i> Catálogo</h2>
+          <div class="row g-2 mb-3">
+            <div class="col-md-6">
+              <div class="btn-group w-100" role="group" aria-label="Filtrar por categoría">
+                <button type="button" class="btn botonoscuro" data-filtropriv="todas">Todas</button>
+                <button type="button" class="btn botonoscuro" data-filtropriv="pesada">Pesadas</button>
+                <button type="button" class="btn botonoscuro" data-filtropriv="liviana">Livianas</button>
+              </div>
+            </div>
+            <div class="col-md-6"><input id="busquedaPrivada" type="search" class="form-control" placeholder="Buscar por nombre..." aria-label="Buscar maquinaria por nombre"></div>
+          </div>
+          <div id="catalogoPrivado" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3"></div>
+          <nav class="mt-3"><div id="paginacionPrivada" class="d-flex gap-2 flex-wrap"></div></nav>
+        </section>
+
+        <section id="modulo-maquinas" class="modulo d-none">
+          <h2 class="tituloseccion"><i class="bi bi-wrench"></i> Administrar maquinarias</h2>
+          <div class="card p-3 mb-3" data-rol="admin operador">
+            <h3 class="h5" id="tituloFormMaquina">Nueva maquinaria</h3>
+            <input type="hidden" id="maqId" value="">
+            <div class="row g-2">
+              <div class="col-md-6"><label class="form-label" for="maqNombre">Nombre *</label><input id="maqNombre" class="form-control" placeholder="Nombre *" maxlength="100"></div>
+              <div class="col-md-3"><label class="form-label" for="maqCategoria">Categoría</label><select id="maqCategoria" class="form-select"><option value="pesada">Pesada</option><option value="liviana">Liviana</option></select></div>
+              <div class="col-md-3"><label class="form-label" for="maqTarifa">Tarifa por día *</label><input id="maqTarifa" type="number" inputmode="numeric" min="1" class="form-control" placeholder="Tarifa por día *"></div>
+              <div class="col-md-3"><label class="form-label" for="maqTotal">Unidades (al crear)</label><input id="maqTotal" type="number" inputmode="numeric" min="1" max="200" class="form-control" placeholder="Unidades (al crear)"></div>
+              <div class="col-md-3"><label class="form-label" for="maqPeso">Peso (t) pesada</label><input id="maqPeso" type="number" inputmode="numeric" step="0.01" min="0" class="form-control" placeholder="Peso (t) pesada"></div>
+              <div class="col-md-3"><label class="form-label" for="maqCostoMov">Movilización pesada</label><input id="maqCostoMov" type="number" inputmode="numeric" step="0.01" min="0" class="form-control" placeholder="Movilización pesada"></div>
+              <div class="col-md-3"><label class="form-label" for="maqAncho">Ancho (m) liviana</label><input id="maqAncho" type="number" inputmode="numeric" step="0.01" min="0" class="form-control" placeholder="Ancho (m) liviana"></div>
+              <div class="col-md-3"><label class="form-label" for="maqApta">Zona urbana</label><select id="maqApta" class="form-select"><option value="1">Apta zona urbana</option><option value="0">No apta zona urbana</option></select></div>
+              <div class="col-md-6"><label class="form-label" for="maqUnidadesAgregar">Unidades a agregar (al editar)</label><input id="maqUnidadesAgregar" type="number" inputmode="numeric" min="0" max="200" class="form-control" placeholder="Unidades a agregar (al editar)"></div>
+              <div class="col-md-6"><label class="form-label" for="maqFoto">Foto</label><input id="maqFoto" type="file" class="form-control" accept=".jpg,.jpeg,.png"><div class="form-text">JPG o PNG, máximo 2 MB.</div></div>
+              <div class="col-12 d-flex gap-2">
+                <button id="botonGuardarMaquina" type="button" class="btn botonamarillo"><i class="bi bi-check-lg"></i> Guardar</button>
+                <button id="botonLimpiarMaquina" type="button" class="btn botonoscuro"><i class="bi bi-eraser"></i> Limpiar</button>
+              </div>
+            </div>
+            <div id="mensajeMaquinas"></div>
+          </div>
+          <div class="card p-3">
+            <div class="table-responsive"><table class="table table-striped">
+              <thead><tr><th>Nombre</th><th>Categoría</th><th class="monto-head">Tarifa</th><th>Unidades</th><th>Estado</th><th data-rol="admin operador">Acciones</th></tr></thead>
+              <tbody id="tablaMaquinas"></tbody>
+            </table></div>
+          </div>
+        </section>
+
+        <section id="modulo-unidades" class="modulo d-none">
+          <h2 class="tituloseccion"><i class="bi bi-boxes"></i> Unidades</h2>
+          <div class="card p-3 mb-3">
+            <div class="row g-2">
+              <div class="col-md-8"><label class="form-label" for="uniMaquinaria">Maquinaria</label><select id="uniMaquinaria" class="form-select"></select></div>
+              <div class="col-md-4"><button id="botonCargarUnidades" type="button" class="btn botonoscuro w-100"><i class="bi bi-arrow-repeat"></i> Cargar unidades</button></div>
+            </div>
+          </div>
+          <div class="card p-3">
+            <div class="table-responsive"><table class="table table-striped">
+              <thead><tr><th>Serial</th><th>Estado</th><th data-rol="admin operador">Cambiar estado</th></tr></thead>
+              <tbody id="tablaUnidades"></tbody>
+            </table></div>
+            <div id="mensajeUnidades"></div>
+          </div>
+        </section>
+
+        <section id="modulo-alquileres" class="modulo d-none">
+          <h2 class="tituloseccion"><i class="bi bi-calendar-check"></i> Alquileres</h2>
+          <div class="card p-3 mb-3" data-rol="admin operador">
+            <h3 class="h5">Nuevo alquiler</h3>
+            <div class="row g-2">
+              <div class="col-md-6"><select id="alqCliente" class="form-select"></select></div>
+              <div class="col-md-6"><select id="alqUnidad" class="form-select"></select></div>
+              <div class="col-md-4"><label class="form-label" for="alqDesde">Desde</label><input id="alqDesde" type="date" class="form-control"></div>
+              <div class="col-md-4"><label class="form-label" for="alqHasta">Hasta (programada)</label><input id="alqHasta" type="date" class="form-control"></div>
+              <div class="col-md-4"><label class="form-label" for="alqTarifa">Tarifa pactada</label><input id="alqTarifa" type="number" inputmode="numeric" min="1" class="form-control"></div>
+              <div class="col-md-6"><label class="form-label" for="alqMovilizacion">Movilización</label><input id="alqMovilizacion" type="number" inputmode="numeric" min="0" class="form-control" placeholder="0"></div>
+              <div class="col-md-6"><label class="form-label" for="alqObs">Observaciones</label><input id="alqObs" class="form-control" maxlength="250" placeholder="Observaciones"></div>
+              <div class="col-12"><button id="botonGuardarAlquiler" type="button" class="btn botonamarillo"><i class="bi bi-plus-lg"></i> Guardar alquiler</button></div>
+            </div>
+            <div id="mensajeAlquileres"></div>
+          </div>
+          <div class="card p-3">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <h3 class="h5 mb-0 me-auto">Contratos de alquiler</h3>
+              <button id="botonImprimirAlquileres" type="button" class="btn botonoscuro btn-sm print-oculto"><i class="bi bi-printer"></i> Imprimir</button>
+            </div>
+            <div class="table-responsive"><table class="table table-striped">
+              <thead><tr><th>Contrato</th><th>Cliente</th><th>Unidad</th><th>Período</th><th class="monto-head">Total</th><th>Estado</th></tr></thead>
+              <tbody id="tablaAlquileres"></tbody>
+            </table></div>
+          </div>
+        </section>
+
+        <section id="modulo-calendario" class="modulo d-none">
+          <h2 class="tituloseccion"><i class="bi bi-calendar3"></i> Calendario de alquileres</h2>
+          <div class="row g-2 mb-3 align-items-center">
+            <div class="col-auto"><span class="insignia insignia-aviso"><i class="bi bi-circle-fill"></i> Activo</span></div>
+            <div class="col-auto"><span class="insignia insignia-mal"><i class="bi bi-circle-fill"></i> Moroso</span></div>
+            <div class="col-auto"><span class="insignia insignia-ok"><i class="bi bi-circle-fill"></i> Devuelto</span></div>
+            <div class="col-auto"><span class="insignia insignia-info"><i class="bi bi-flag"></i> Ver la casilla de hoy</span></div>
+            <div class="col-auto ms-auto"><span class="texto-secundario" id="contCalendario"></span></div>
+          </div>
+          <div class="card p-3">
+            <div id="calendarioAlquileres" aria-label="Calendario mensual con todos los alquileres"></div>
+            <p class="texto-secundario mb-0 mt-2" id="estadoCalendario">Cargando calendario con datos vivos de la base…</p>
+          </div>
+        </section>
+
+        <section id="modulo-devoluciones" class="modulo d-none">
+          <h2 class="tituloseccion"><i class="bi bi-arrow-return-left"></i> Devoluciones</h2>
+          <div class="card p-3 mb-3" data-rol="admin operador">
+            <h3 class="h5">Registrar devolución</h3>
+            <div class="row g-2">
+              <div class="col-md-4"><label class="form-label" for="devAlquiler">Contrato</label><select id="devAlquiler" class="form-select"></select></div>
+              <div class="col-md-4"><label class="form-label" for="devFecha">Fecha real</label><input id="devFecha" type="date" class="form-control"></div>
+              <div class="col-md-4"><label class="form-label" for="devEstado">Estado físico</label><select id="devEstado" class="form-select"><option value="bueno">Bueno</option><option value="regular">Regular</option><option value="malo">Malo</option></select></div>
+              <div class="col-md-4"><label class="form-label" for="devDesgaste">Desgaste</label><select id="devDesgaste" class="form-select"><option value="ninguno">Ninguno</option><option value="bajo">Bajo</option><option value="medio">Medio</option><option value="alto">Alto</option></select></div>
+              <div class="col-md-4"><label class="form-label" for="devReparacion">Reparación</label><input id="devReparacion" type="number" inputmode="numeric" min="0" class="form-control" placeholder="0"></div>
+              <div class="col-md-4"><label class="form-label" for="devDanos">Daños</label><input id="devDanos" class="form-control" maxlength="250"></div>
+              <div class="col-12"><label class="form-label" for="devObs">Observaciones</label><input id="devObs" class="form-control" placeholder="Observaciones" maxlength="250"></div>
+              <div class="col-12"><button id="botonGuardarDevolucion" type="button" class="btn botonamarillo"><i class="bi bi-check-lg"></i> Registrar devolución</button></div>
+            </div>
+            <div id="mensajeDevoluciones"></div>
+            <div id="resultadoDevolucion" class="mt-2"></div>
+          </div>
+          <div class="card p-3">
+            <h3 class="h5">Contratos activos</h3>
+            <div class="table-responsive"><table class="table table-striped">
+              <thead><tr><th>Contrato</th><th>Unidad</th><th>Programada</th></tr></thead>
+              <tbody id="tablaDevoluciones"></tbody>
+            </table></div>
+          </div>
+        </section>
+
+        <section id="modulo-solicitudes" class="modulo d-none" data-rol="admin operador">
+          <h2 class="tituloseccion"><i class="bi bi-inbox"></i> Solicitudes de alquiler</h2>
+          <div class="btn-group mb-2" role="group" aria-label="Filtrar solicitudes">
+            <button type="button" class="btn botonoscuro" data-filtro-sol="pendiente">Pendientes</button>
+            <button type="button" class="btn botonoscuro" data-filtro-sol="aprobada">Aprobadas</button>
+            <button type="button" class="btn botonoscuro" data-filtro-sol="rechazada">Rechazadas</button>
+            <button type="button" class="btn botonoscuro" data-filtro-sol="">Todas</button>
+          </div>
+          <div class="card p-3 mb-3 d-none" id="cajaGestionSolicitud">
+            <h3 class="h5">Gestionar solicitud <span id="gestionSolicitudId"></span></h3>
+            <input type="hidden" id="gestionSolicitudNumero" value="">
+            <div class="row g-2">
+              <div class="col-md-4"><label class="form-label" for="apruebaCliente">Cliente *</label><select id="apruebaCliente" class="form-select"></select></div>
+              <div class="col-md-4"><label class="form-label" for="apruebaUnidad">Unidad disponible *</label><select id="apruebaUnidad" class="form-select"></select></div>
+              <div class="col-md-2"><label class="form-label" for="apruebaTarifa">Tarifa *</label><input id="apruebaTarifa" type="number" inputmode="numeric" min="1" class="form-control"></div>
+              <div class="col-md-2"><label class="form-label" for="apruebaMovilizacion">Movilización</label><input id="apruebaMovilizacion" type="number" inputmode="numeric" min="0" class="form-control" placeholder="0"></div>
+              <div class="col-md-8"><label class="form-label" for="rechazaMotivo">Motivo del rechazo</label><input id="rechazaMotivo" class="form-control" maxlength="250" placeholder="Solo para rechazar"></div>
+              <div class="col-md-4 d-flex gap-2 align-items-end">
+                <button id="botonAprobarSolicitud" type="button" class="btn botonamarillo"><i class="bi bi-check-lg"></i> Aprobar</button>
+                <button id="botonRechazarSolicitud" type="button" class="btn botonoscuro"><i class="bi bi-x-lg"></i> Rechazar</button>
+              </div>
+            </div>
+            <div id="mensajeGestionSolicitud"></div>
+          </div>
+          <div class="card p-3">
+            <div class="table-responsive"><table class="table table-striped">
+              <thead><tr><th>N.º</th><th>Solicitante</th><th>Máquina</th><th>Período</th><th>Estado</th><th>Acciones</th></tr></thead>
+              <tbody id="tablaSolicitudes"></tbody>
+            </table></div>
+            <div id="mensajeSolicitudes"></div>
+          </div>
+        </section>
+
+        <section id="modulo-reportes" class="modulo d-none">
+          <h2 class="tituloseccion"><i class="bi bi-bar-chart"></i> Reportes</h2>
+          <div class="card p-3 mb-3">
+            <button id="botonCargarResumen" type="button" class="btn botonoscuro"><i class="bi bi-bar-chart"></i> Cargar resumen</button>
+            <div id="resumenReporte" class="mt-2"></div>
+          </div>
+          <div class="card p-3 mb-3" data-rol="admin operador">
+            <h3 class="h5">Guardar reporte actual</h3>
+            <div class="row g-2">
+              <div class="col-md-8"><label class="form-label" for="repTitulo">Título del reporte</label><input id="repTitulo" class="form-control" placeholder="Título del reporte" maxlength="150"></div>
+              <div class="col-md-4"><button id="botonGuardarReporte" type="button" class="btn botonamarillo w-100"><i class="bi bi-save"></i> Guardar</button></div>
+            </div>
+            <div id="mensajeReportes"></div>
+          </div>
+          <div class="card p-3">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <h3 class="h5 mb-0 me-auto">Reportes guardados</h3>
+              <button id="botonImprimirReportes" type="button" class="btn botonoscuro btn-sm print-oculto"><i class="bi bi-printer"></i> Imprimir</button>
+            </div>
+            <div class="table-responsive"><table class="table table-striped">
+              <thead><tr><th>Título</th><th>Fecha</th><th>Contratos</th><th class="monto-head">Ingresos</th><th data-rol="admin">Acción</th></tr></thead>
+              <tbody id="tablaReportes"></tbody>
+            </table></div>
+          </div>
+        </section>
+
+        <section id="modulo-usuarios" class="modulo d-none" data-rol="admin">
+          <h2 class="tituloseccion"><i class="bi bi-shield-lock"></i> Gestión de usuarios</h2>
+          <p class="texto-secundario">Solo el administrador usa este módulo: puede crear usuarios con rol y contraseña temporal (deberán cambiarla al ingresar), listar cuentas y restablecer contraseñas.</p>
+          <div class="card p-3 mb-3">
+            <h3 class="h5-nueva h5"><i class="bi bi-person-plus"></i> Crear usuario</h3>
+            <div class="row g-2">
+              <div class="col-md-4"><label class="form-label" for="usrNombre">Nombre completo *</label><input id="usrNombre" class="form-control" autocomplete="name" maxlength="100" placeholder="Ej.: Ana Gómez"></div>
+              <div class="col-md-4"><label class="form-label" for="usrUsuario">Usuario *</label><input id="usrUsuario" class="form-control" autocomplete="off" maxlength="30" placeholder="Ej.: agomez"></div>
+              <div class="col-md-2"><label class="form-label" for="usrRol">Rol</label><select id="usrRol" class="form-select"><option value="operador">Operador</option></select></div>
+              <div class="col-md-4"><label class="form-label" for="usrClave">Clave temporal (12 a 72) *</label><input id="usrClave" type="password" autocomplete="new-password" class="form-control" placeholder="Mínimo 12 caracteres"></div>
+              <div class="col-md-4 d-flex align-items-end"><button id="botonCrearUsuario" type="button" class="btn botonamarillo w-100"><i class="bi bi-plus-lg"></i> Crear usuario</button></div>
+            </div>
+            <div id="mensajeUsuarios"></div>
+            <div class="form-text">La clave temporal se guarda con bcrypt (costo 12) y el usuario deberá cambiarla en su primer ingreso.</div>
+          </div>
+          <div class="card p-3 mb-3">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <h3 class="h5 mb-0 me-auto"><i class="bi bi-list-ul"></i> Cuentas del sistema</h3>
+              <button id="botonCargarUsuarios" type="button" class="btn botonoscuro btn-sm"><i class="bi bi-arrow-repeat"></i> Recargar lista</button>
+            </div>
+            <div class="table-responsive"><table class="table table-striped">
+              <thead><tr><th>Usuario</th><th>Nombre</th><th>Rol</th><th>Estado</th><th>Clave temporal</th></tr></thead>
+              <tbody id="tablaUsuarios"></tbody>
+            </table></div>
+            <div id="mensajeListaUsuarios"></div>
+          </div>
+          <div class="card p-3">
+            <h3 class="h5"><i class="bi bi-key"></i> Restablecer contraseña</h3>
+            <p class="texto-secundario">Escriba el usuario y una clave nueva temporal; el usuario deberá cambiarla al ingresar.</p>
+            <div class="row g-2">
+              <div class="col-md-4"><label class="form-label" for="resUsuario">Usuario *</label><input id="resUsuario" class="form-control" maxlength="60" placeholder="Ej.: operador"></div>
+              <div class="col-md-4"><label class="form-label" for="resNueva">Clave nueva *</label><input id="resNueva" type="password" autocomplete="new-password" class="form-control" placeholder="Mínimo 12 caracteres"></div>
+              <div class="col-md-4"><label class="form-label" for="resNueva2">Repita la clave *</label><input id="resNueva2" type="password" autocomplete="new-password" class="form-control" placeholder="Repita la clave"></div>
+              <div class="col-12"><button id="botonRestablecerClave" type="button" class="btn botonamarillo"><i class="bi bi-check-lg"></i> Restablecer</button></div>
+            </div>
+            <div id="mensajeReset"></div>
+          </div>
+        </section>
+
+        <section id="modulo-clave" class="modulo d-none">
+          <h2 class="tituloseccion"><i class="bi bi-key"></i> Cambiar contraseña</h2>
+          <div class="card p-3">
+            <p class="texto-secundario"><i class="bi bi-info-circle"></i> La clave nueva debe tener entre 12 y 72 caracteres. Se le pedirá la actual para confirmar que es usted.</p>
+            <div class="row g-2">
+              <div class="col-md-4"><label class="form-label" for="claActual">Clave actual</label><input id="claActual" type="password" autocomplete="current-password" class="form-control" placeholder="Clave actual"></div>
+              <div class="col-md-4"><label class="form-label" for="claNueva">Clave nueva (12 a 72)</label><input id="claNueva" type="password" autocomplete="new-password" class="form-control" placeholder="Clave nueva (12 a 72)"></div>
+              <div class="col-md-4"><label class="form-label" for="claNueva2">Repita la clave nueva</label><input id="claNueva2" type="password" autocomplete="new-password" class="form-control" placeholder="Repita la clave nueva"></div>
+              <div class="col-12"><button id="botonCambiarClave" type="button" class="btn botonamarillo"><i class="bi bi-key"></i> Cambiar contraseña</button></div>
+            </div>
+            <div id="mensajeClave"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalDetalle" tabindex="-1" aria-labelledby="detalleNombre">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="detalleNombre">Maquinaria</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div class="marcofoto mb-2">
+          <img id="detalleFoto" src="img/logo.png" alt="Foto de maquinaria" class="fotomaquina" loading="lazy">
+          <button id="botonFotoAnt" type="button" class="fotoboton fotoizq" aria-label="Foto anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+          <button id="botonFotoSig" type="button" class="fotoboton fotoder" aria-label="Foto siguiente"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+        </div>
+        <p class="texto-secundario" id="detalleContador"></p>
+        <div id="detalleInfo"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="tituloLogin">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header login-cabecera">
+        <img src="img/logo.png" alt="Logo" class="logo">
+        <h3 class="modal-title" id="tituloLogin">Iniciar sesión</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <label class="form-label" for="loginUsuario">Usuario</label>
+        <div class="input-group mb-2">
+          <span class="input-group-text"><i class="bi bi-person"></i></span>
+          <input id="loginUsuario" class="form-control" autocomplete="username" maxlength="60" placeholder="Escriba su usuario">
+        </div>
+        <label class="form-label" for="loginClave">Clave</label>
+        <div class="input-group mb-2">
+          <span class="input-group-text"><i class="bi bi-lock"></i></span>
+          <input id="loginClave" type="password" class="form-control" autocomplete="current-password" placeholder="Escriba su clave">
+          <button id="botonVerClave" type="button" class="btn botonoscuro" aria-label="Mostrar u ocultar clave"><i class="bi bi-eye"></i></button>
+        </div>
+        <div class="captcha-marco mb-2">
+          <p class="form-label mb-1" id="textoCaptcha"><i class="bi bi-shield-check"></i> Captcha: cargando...</p>
+          <div id="cajaIconos" role="group" aria-label="Seleccione el icono pedido"></div>
+        </div>
+        <input type="hidden" id="captchaId" value="">
+        <div class="d-flex gap-2 mt-2">
+          <button id="botonIngresar" type="button" class="btn botonamarillo flex-fill"><i class="bi bi-box-arrow-in-right"></i> Ingresar</button>
+          <button id="botonRecargarCaptcha" type="button" class="btn botonoscuro" aria-label="Generar otro captcha"><i class="bi bi-arrow-clockwise"></i></button>
+        </div>
+        <div class="text-center mt-2">
+          <button id="botonOlvidoClave" type="button" class="btn btn-link">¿Olvidó su contraseña?</button>
+        </div>
+        <div id="mensajeLogin" aria-live="polite"></div>
+        <div id="cajaRecuperar" class="d-none mt-2">
+          <p class="texto-secundario">Pida al administrador que restablezca su clave.</p>
+          <button id="botonVolverLogin" type="button" class="btn botonoscuro w-100"><i class="bi bi-arrow-left"></i> Volver</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalConfirmar" tabindex="-1" aria-labelledby="tituloConfirmar">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h3 class="modal-title" id="tituloConfirmar">Confirmar</h3></div>
+      <div class="modal-body"><p id="mensajeConfirmar"></p></div>
+      <div class="modal-footer">
+        <button type="button" class="btn botonoscuro" data-bs-dismiss="modal">Cancelar</button>
+        <button id="botonConfirmarSi" type="button" class="btn botonamarillo">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="zonaToasts" class="zona-toasts" aria-live="polite"></div>
+
+<script src="vendor/bootstrap.bundle.min.js" integrity="sha384-HqZ4oRyF0315sRxm0icZGRHk+ppSPetPAgYnl2DqGNobhcX2fLVRHC771KNO7RC8" crossorigin="anonymous"></script>
+<script src="vendor/chart.umd.js" integrity="sha384-1djDohdCCM2yUSPhjwQUvDsVi0JK0Wd0C9JL8r7WNq6d7yz9nCO9QUTfP3FQFuV1" crossorigin="anonymous"></script>
+<script src="vendor/fullcalendar.global.min.js" integrity="sha384-B1OFx8Gy9GjPu8UbUyXbGQpzll9ubAUQ9agInFJ8NnD7nYG1u/CLR+Sqr5yifl4q" crossorigin="anonymous"></script>
+<script src="vendor/fullcalendar.es.global.min.js" integrity="sha384-yvtDoBsejAOiZwybj79N2ImCrUqwpcD1EyVnqVU+BCvFUi85WVXj0tP9gRQyW5KF" crossorigin="anonymous"></script>
+<script src="js/config.js?v=20261105"></script>
+<script src="js/api.js?v=20261105"></script>
+<script src="js/funciones.js?v=20261105"></script>
+<script src="js/inicio.js?v=20261105"></script>
+<script src="js/clientes.js?v=20261105"></script>
+<script src="js/maquinaria.js?v=20261105"></script>
+<script src="js/unidades.js?v=20261105"></script>
+<script src="js/alquileres.js?v=20261105"></script>
+<script src="js/devoluciones.js?v=20261105"></script>
+<script src="js/reportes.js?v=20261105"></script>
+<script src="js/solicitudes.js?v=20261105"></script>
+<script src="js/clave.js?v=20261105"></script>
+<script src="js/usuarios.js?v=20261105"></script>
+<script src="js/dashboard.js?v=20261105"></script>
+<script src="js/calendario.js?v=20261105"></script>
+<script src="js/notificaciones.js?v=20261105"></script>
+</body>
+</html>
