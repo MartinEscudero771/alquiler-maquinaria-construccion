@@ -1,0 +1,23 @@
+=== Evidencia real de auditoría de dependencias ===
+Fecha de ejecucion: viernes, 6 de noviembre de 2026
+Node.js: v24.19.0  (npm integrado)
+
+$ cd api-gateway && npm audit --omit=dev
+found 0 vulnerabilities
+
+$ cd api-gateway && npm audit
+found 0 vulnerabilities
+
+$ cd apis/apinode && npm audit --omit=dev
+found 0 vulnerabilities
+
+$ cd apis/apinode && npm audit
+found 0 vulnerabilities
+
+$ pip-audit --version
+(pip-audit no esta instalado en la maquina de entrega;
+ por eso la dependencia de Python no fue auditada con esa
+ herramienta y se declara como limitacion)
+
+$ cd movil && npm audit
+(ver audit_movil.txt)

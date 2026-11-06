@@ -1,0 +1,57 @@
+{
+  "ok": true,
+  "codigo": 200,
+  "mensaje": "Clientes obtenidos.",
+  "datos": {
+    "total": 11,
+    "pagina": 1,
+    "limite": 5,
+    "clientes": [
+      {
+        "idcliente": 19,
+        "nombre": "Construcciones El Progreso S.A.S.",
+        "documento": "CC1010",
+        "telefono": "6015550120",
+        "correo": "obras@elprogreso.co",
+        "direccion": "Km 3 via Norte, Bogota D.C.",
+        "fecharegistro": "2026-09-06"
+      },
+      {
+        "idcliente": 18,
+        "nombre": "Hernan Giraldo Builes",
+        "documento": "CC1009",
+        "telefono": "3175550119",
+        "correo": "hernan.giraldo@correo.co",
+        "direccion": "Km 3 via Norte, Bogota D.C.",
+        "fecharegistro": "2026-08-25"
+      },
+      {
+        "idcliente": 17,
+        "nombre": "Monica Liliana Zapata",
+        "documento": "CC1008",
+        "telefono": "3125550118",
+        "correo": "monica.zapata@correo.co",
+        "direccion": "Km 3 via Norte, Bogota D.C.",
+        "fecharegistro": "2026-08-13"
+      },
+      {
+        "idcliente": 16,
+        "nombre": "Julian Andres Betancur",
+        "documento": "CC1007",
+        "telefono": "3145550117",
+        "correo": "julian.betancur@correo.co",
+        "direccion": "Km 3 via Norte, Bogota D.C.",
+        "fecharegistro": "2026-08-01"
+      },
+      {
+        "idcliente": 15,
+        "nombre": "Oscar Ivan Quintero",
+        "documento": "CC1006",
+        "telefono": "3135550116",
+        "correo": "oscar.quintero@correo.co",
+        "direccion": "Km 3 via Norte, Bogota D.C.",
+        "fecharegistro": "2026-07-20"
+      }
+    ]
+  }
+}

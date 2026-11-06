@@ -1,0 +1,6 @@
+{
+  "ok": false,
+  "codigo": 401,
+  "mensaje": "Token inválido o expirado.",
+  "datos": []
+}

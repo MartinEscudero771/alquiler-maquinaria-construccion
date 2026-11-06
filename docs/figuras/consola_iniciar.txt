@@ -1,0 +1,42 @@
+[ OK ] PowerShell 7.6.9 detectado.
+[ OK ] Herramienta 'php' disponible.
+[ OK ] Herramienta 'node' disponible.
+[ OK ] Herramienta 'python' disponible.
+[ OK ] Cliente MySQL: C:\xampp\mysql\bin\mysql.exe.
+[INFO] viejo php (PID 2032) ya no existe. Se omite.
+[INFO] viejo node (PID 28664) ya no existe. Se omite.
+[INFO] viejo python (PID 5572) ya no existe. Se omite.
+[INFO] viejo gateway (PID 37968) ya no existe. Se omite.
+[ OK ] Puertos 3000, 3002, 3003, 8000 y 8443 libres de procesos viejos.
+[INFO] Puerto 3306 ocupado. Se usa la instancia existente de MariaDB.
+[AVISO] Instancia compartida de MariaDB detectada (root con clave distinta de basededatos/.root.env). Se respeta la clave vigente de root y no se tocan las variables globales del servidor.
+[ OK ] Esquema aplicado/verificado (modo compartido: sin cambia root ni globals).
+[ OK ] Root remoto por nombre de host eliminado si existia.
+[INFO] Ninguna maquinaria nueva por sembrar.
+[ OK ] Clientes sembrados: 10 nuevos de 10 revisados.
+[ OK ] Contratos sembrados: 0 nuevos de 32 revisados.
+[INFO] Inspecciones creadas/verificadas: 0
+[ OK ] Solicitudes sembradas: 0 de 3 revisadas.
+[ OK ] Reportes guardados sembrados: 0 de 2 revisados.
+[INFO] Notificaciones ya presentes; no se siembran de nuevo.
+[ OK ] Siembra terminada. Totales en BD: clientes=11, alquileres=33, notificaciones=6.
+[INFO] node_modules ya existe en gateway. Se omite npm install.
+[INFO] node_modules ya existe en apinode. Se omite npm install.
+[INFO] fastapi ya esta instalado. Se omite pip install.
+[ OK ] php iniciado (PID 19300, puerto 8000).
+[ OK ] node iniciado (PID 27616, puerto 3002).
+[ OK ] python iniciado (PID 13680, puerto 3003).
+[ OK ] gateway iniciado (PID 26484, puerto 3000).
+[ OK ] PIDs guardados en logs/pids.json.
+[ OK ] API PHP protegida por clave interna (403), servicio vivo.
+True
+[ OK ] API Node responde en http://127.0.0.1:3002/salud.
+True
+[ OK ] API Python responde en http://127.0.0.1:3003/salud.
+True
+[ OK ] Gateway responde en https://127.0.0.1:3000/salud.
+True
+[ OK ] frontend iniciado (PID 37960, puerto 8443).
+[ OK ] Frontend servido en https://localhost:8443 (memoria + integridad + cabeceras).
+[ OK ] Abriendo https://localhost:8443 en Firefox.
+[ OK ] Entorno iniciado. Registros en C:\Users\Escudero\Desktop\Control de alquiler de maquinaria de construccion V2\logs.

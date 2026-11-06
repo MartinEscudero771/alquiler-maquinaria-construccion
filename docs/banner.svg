@@ -1,0 +1,90 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Control de Alquiler de Maquinaria - banner del proyecto">
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#171A1F"/>
+      <stop offset="1" stop-color="#101216"/>
+    </linearGradient>
+    <linearGradient id="acero" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3B6BC7"/>
+      <stop offset="1" stop-color="#214F9E"/>
+    </linearGradient>
+    <clipPath id="marco">
+      <rect x="10" y="10" width="1180" height="340" rx="26"/>
+    </clipPath>
+    <filter id="sombra" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <g clip-path="url(#marco)">
+    <rect x="10" y="10" width="1180" height="340" rx="26" fill="url(#fondo)"/>
+
+    <!-- cinta amarilla superior y detalle acero -->
+    <rect x="10" y="10" width="1180" height="8" fill="#FFB800"/>
+    <rect x="10" y="18" width="1180" height="3" fill="#214F9E" opacity="0.85"/>
+
+    <!-- rejilla de puntos de fondo -->
+    <g fill="#FFFFFF" opacity="0.035">
+      <circle cx="640" cy="70" r="2"/><circle cx="700" cy="70" r="2"/><circle cx="760" cy="70" r="2"/><circle cx="820" cy="70" r="2"/><circle cx="880" cy="70" r="2"/><circle cx="940" cy="70" r="2"/><circle cx="1000" cy="70" r="2"/><circle cx="1060" cy="70" r="2"/><circle cx="1120" cy="70" r="2"/>
+      <circle cx="640" cy="110" r="2"/><circle cx="700" cy="110" r="2"/><circle cx="760" cy="110" r="2"/><circle cx="820" cy="110" r="2"/><circle cx="880" cy="110" r="2"/><circle cx="940" cy="110" r="2"/><circle cx="1000" cy="110" r="2"/><circle cx="1060" cy="110" r="2"/><circle cx="1120" cy="110" r="2"/>
+      <circle cx="88" cy="318" r="2"/><circle cx="148" cy="318" r="2"/><circle cx="208" cy="318" r="2"/><circle cx="268" cy="318" r="2"/>
+    </g>
+
+    <!-- excavadora estilizada (paleta del sistema de diseno) -->
+    <g filter="url(#sombra)">
+      <!-- oruga -->
+      <rect x="56" y="266" width="196" height="38" rx="19" fill="#1E2127" stroke="#343A43" stroke-width="2"/>
+      <circle cx="86" cy="285" r="10" fill="#214F9E"/>
+      <circle cx="124" cy="285" r="10" fill="#214F9E"/>
+      <circle cx="162" cy="285" r="10" fill="#214F9E"/>
+      <circle cx="200" cy="285" r="10" fill="#214F9E"/>
+      <circle cx="222" cy="285" r="10" fill="#214F9E"/>
+      <!-- chasis y cabina -->
+      <rect x="78" y="228" width="152" height="42" rx="9" fill="url(#acero)"/>
+      <rect x="128" y="148" width="84" height="84" rx="12" fill="url(#acero)"/>
+      <rect x="144" y="164" width="36" height="42" rx="7" fill="#14161A" opacity="0.88"/>
+      <rect x="142" y="138" width="56" height="10" rx="5" fill="#FFB800"/>
+      <!-- brazo y balde -->
+      <path d="M206 190 L298 104 L356 148" fill="none" stroke="#FFB800" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M348 140 L398 148 L388 210 L338 196 Z" fill="#FFB800"/>
+      <circle cx="206" cy="190" r="13" fill="#2A2F37" stroke="#FFB800" stroke-width="4"/>
+      <circle cx="298" cy="104" r="11" fill="#2A2F37" stroke="#FFB800" stroke-width="4"/>
+    </g>
+
+    <!-- linea base de terreno -->
+    <path d="M40 318 H400" stroke="#343A43" stroke-width="2" stroke-dasharray="10 8" stroke-linecap="round"/>
+
+    <!-- chip codigo abierto -->
+    <g>
+      <rect x="470" y="52" width="212" height="32" rx="16" fill="#FFB800"/>
+      <text x="576" y="73" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="bold" fill="#14161A" text-anchor="middle">CÓDIGO ABIERTO · MIT</text>
+    </g>
+
+    <!-- titulo -->
+    <text x="470" y="150" font-family="Segoe UI, Arial, sans-serif" font-size="62" font-weight="700" fill="#E5E7EB" letter-spacing="1">ALQUILER DE</text>
+    <text x="470" y="215" font-family="Segoe UI, Arial, sans-serif" font-size="62" font-weight="700" fill="#FFB800" letter-spacing="1">MAQUINARIA</text>
+    <rect x="472" y="232" width="150" height="6" rx="3" fill="#214F9E"/>
+
+    <!-- subtitulo -->
+    <text x="470" y="268" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#A8AEB8">Control de alquiler de maquinaria de construcción</text>
+    <text x="470" y="292" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#A8AEB8">API Gateway unificado · 3 APIs de negocio · Seguridad multicapa</text>
+
+    <!-- chips tecnologicos -->
+    <g font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#E5E7EB">
+      <rect x="470" y="316" width="104" height="28" rx="14" fill="#1E2127" stroke="#343A43" stroke-width="1.5"/>
+      <text x="522" y="335" text-anchor="middle">Node.js 24</text>
+      <rect x="584" y="316" width="112" height="28" rx="14" fill="#1E2127" stroke="#343A43" stroke-width="1.5"/>
+      <text x="640" y="335" text-anchor="middle">Python 3.13</text>
+      <rect x="706" y="316" width="86" height="28" rx="14" fill="#1E2127" stroke="#343A43" stroke-width="1.5"/>
+      <text x="749" y="335" text-anchor="middle">PHP 8.2</text>
+      <rect x="802" y="316" width="122" height="28" rx="14" fill="#1E2127" stroke="#343A43" stroke-width="1.5"/>
+      <text x="863" y="335" text-anchor="middle">MariaDB 10.4</text>
+      <rect x="934" y="316" width="116" height="28" rx="14" fill="#1E2127" stroke="#343A43" stroke-width="1.5"/>
+      <text x="992" y="335" text-anchor="middle">Bootstrap 5</text>
+      <rect x="1060" y="316" width="106" height="28" rx="14" fill="#1E2127" stroke="#FFB800" stroke-width="1.5"/>
+      <text x="1113" y="335" text-anchor="middle" fill="#FFB800">Chart.js 4</text>
+    </g>
+  </g>
+
+  <rect x="10" y="10" width="1180" height="340" rx="26" fill="none" stroke="#2A2F37" stroke-width="1.5"/>
+</svg>

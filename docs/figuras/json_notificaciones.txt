@@ -1,0 +1,64 @@
+{
+  "ok": true,
+  "codigo": 200,
+  "mensaje": "Notificaciones obtenidas.",
+  "datos": {
+    "no_leidas": 6,
+    "notificaciones": [
+      {
+        "idnotificacion": 30,
+        "titulo": "Resumen operativo guardado",
+        "mensaje": "Los dos reportes de demostracion estan en el modulo Reportes con los totales vivos de la base.",
+        "rama": "SEMILLA",
+        "nivel": "info",
+        "leida": false,
+        "fecha": "2026-11-05 23:17:21"
+      },
+      {
+        "idnotificacion": 29,
+        "titulo": "Contratos con obra en curso",
+        "mensaje": "Seis unidades estßn alquiladas ahora mismo. Consulte el Calendario para ver cada rango.",
+        "rama": "SEMILLA",
+        "nivel": "exito",
+        "leida": false,
+        "fecha": "2026-11-05 23:17:21"
+      },
+      {
+        "idnotificacion": 28,
+        "titulo": "Unidad morosa detectada",
+        "mensaje": "Un contrato vencido sin devolucion esta generando recargos por dia. Revise Devoluciones o registre la entrega.",
+        "rama": "SEMILLA",
+        "nivel": "error",
+        "leida": false,
+        "fecha": "2026-11-05 23:17:21"
+      },
+      {
+        "idnotificacion": 27,
+        "titulo": "Nueva solicitud pendiente de gestion",
+        "mensaje": "Rendering Rios Andinos: solicita gruamovil para la proxima semana.",
+        "rama": "SEMILLA",
+        "nivel": "aviso",
+        "leida": false,
+        "fecha": "2026-11-05 23:17:20"
+      },
+      {
+        "idnotificacion": 26,
+        "titulo": "Nueva solicitud pendiente de gestion",
+        "mensaje": "Obra Ciudadela del Sur: solicita montacargas para esta semana. Gestionela en el modulo Solicitudes.",
+        "rama": "SEMILLA",
+        "nivel": "aviso",
+        "leida": false,
+        "fecha": "2026-11-05 23:17:20"
+      },
+      {
+        "idnotificacion": 25,
+        "titulo": "Notificaciones activadas",
+        "mensaje": "Aqui vera avisos de solicitudes nuevas, contratos y devoluciones. La campana se actualiza cada minuto.",
+        "rama": "SEMILLA",
+        "nivel": "info",
+        "leida": false,
+        "fecha": "2026-11-05 23:17:20"
+      }
+    ]
+  }
+}
