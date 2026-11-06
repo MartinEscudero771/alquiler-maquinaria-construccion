@@ -1,0 +1,38 @@
+# Variables de entorno (nunca subir claves reales)
+.env
+*.env
+!.env.example
+apis/*/.env
+api-gateway/.env
+
+# Dependencias
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Certificados y claves locales
+certificados/
+*.cnf
+claves_*.tmp
+*.tmp
+
+# Respaldos de base de datos (solo locales, se conservan los ultimos 7)
+respaldos/*.sql
+
+# Registros y PIDs de ejecucion (se conserva el marcador de carpeta)
+logs/*
+!logs/.gitkeep
+
+# Sesiones en disco (el token vive solo en memoria)
+.sesiones.json
+
+# Sistema y editores
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+
+# Empaquetados repomix (copia completa del codigo; nunca servirlos)
+repomix-*.xml
